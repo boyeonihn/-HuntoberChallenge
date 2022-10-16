@@ -7,12 +7,6 @@ function filterNonsense(submissions) {
     // filter for empty space beginning and end
     submissions = submissions.filter(n => n == n.trim());
 
-    // filter for 'S'
-    submissions = submissions.filter( n => !n.includes('S'));
-
-    // filter for length of pun (cannot be multiple of 5)
-    submissions = submissions.filter( n => n.length % 5 !== 0); 
-
     // filter for forbidden words ('dog', 'bark', or 'bone')
     const forbiddenWords = ['dog', 'bark', 'bone']
 
@@ -24,20 +18,23 @@ function filterNonsense(submissions) {
         submissions = filterItems(submissions, keyword); 
     }
 
+    // filter for length of pun (cannot be multiple of 5)
+    submissions = submissions.filter( n => n.length % 5 !== 0); 
+
     // sum of the charCodes of the 1st and last characters must be odd 
     submissions = submissions.filter( n => (n.charCodeAt(0) + n.charCodeAt(n.length - 1)) % 2 !== 0); 
 
-    //Character directly after the middle of the string may not be 'e' 
+    // Character directly after the middle of the string may not be 'e' 
     submissions = submissions.filter( n => {
         const index = Math.round(n.length / 2)
-        return n[index] !== 'e' || n[index] !== 'E'; 
+        return n[index].toLowerCase() !== 'e';  
     })
 
     // Must have an even number of lowercase letters (do not count punctuation or spaces as letters)
     submissions = submissions.filter( n => {
         let lowerCount = 0; 
         for (let i = 0; i < n.length; i++) {
-            if (n[i] == n[i].toLowerCase()) {
+            if (n.charCodeAt(i) >= 97 && n.charCodeAt(i) <= 122) {
                 lowerCount++; 
             }
         }
@@ -48,10 +45,15 @@ function filterNonsense(submissions) {
     submissions = submissions.filter( n => {
         let upperCount = 0; 
         for (let i = 0; i < n.length; i++) {
-            if (n[i] == n[i].toUpperCase()) {
+            if (n.charCodeAt(i) >= 65 && n.charCodeAt(i) <= 90) {
                 upperCount++; 
             }
         }
         return upperCount >= 2; 
     })
+
+    // filter for 'S'
+    submissions = submissions.filter( n => !n.includes('S'));
+
+    return submissions;
 }
