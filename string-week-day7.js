@@ -1,19 +1,19 @@
 function swapLetter(string){
-    const lower = 'abcdefghijklmnopqrstuvwxyz';
+    const abc = 'abcdefghijklmnopqrstuvwxyz';
     let result = '';
-    let length = lower.length; 
+    let length = abc.length; 
 
     for (let i = 0; i < string.length; i++) {
         let index; 
         let letter = string[i].toLowerCase(); 
-        if (lower.includes(letter)) {
+        if (abc.includes(letter)) {
             if (string[i] == string[i].toUpperCase()) {
-                index = lower.indexOf(letter) + 1; 
-                result += lower[length - index]; 
+                index = abc.indexOf(letter) + 1; 
+                result += abc[length - index]; 
             }
             else {
-                index = lower.indexOf(letter) + 1;
-                result += lower[length - index].toUpperCase(); 
+                index = abc.indexOf(letter) + 1;
+                result += abc[length - index].toUpperCase(); 
             }
         }
         else {

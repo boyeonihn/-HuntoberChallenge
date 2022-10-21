@@ -1,7 +1,7 @@
 function filterMessage(string) {
     const secrets = ['S', 'p', 'a', 'c', 'e'];
     for (let letter of secrets) {
-        string.replaceAll(letter, ' '); 
+        string = string.replaceAll(letter, ' '); 
     }
     return string; 
 }
