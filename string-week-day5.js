@@ -57,3 +57,5 @@ function filterNonsense(submissions) {
 
     return submissions;
 }
+
+let remaining = ['Teenage Mewtant Ninja Turtles', 'Rick & Meowty', "Mewster Rogers' Neighborhood"]
